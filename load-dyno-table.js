@@ -107,25 +107,26 @@ function deleteTable() {
 }
 
 function createWorker() {
-  var child = child_process.fork('./load-dyno-worker');
-  console.log("[parent] Creating worker ", child.pid);
-  child.on('message', function(message) {
+  var workerArgs = [ table.region, table.endpoint, debug.toString() ];
+  var worker = child_process.fork('./load-dyno-worker', workerArgs);
+  console.log("[parent] Creating worker ", worker.pid);
+  worker.on('message', function(message) {
     if (debug) console.log(message);
     if (message.success) { 
-      child.send(getNextRecord());
+      worker.send(getNextRecord());
     } else {
-      child.disconnect();
+      worker.disconnect();
     }
   });
-  return child;
+  return worker;
 }
 
 function startWorkers() {
    index = -1;
    workerCnt = (cpuCount < 2 ? 1 : cpuCount - 1);
    for (i = 1; i <= workerCnt; i++) {
-     var child = createWorker();
-     child.send(getNextRecord());
+     var worker = createWorker();
+     worker.send(getNextRecord());
    }
    showBar();
 }
@@ -150,7 +151,7 @@ function displayUsage(options) {
       header: 'Synopsis',
       content: '$ load-dyno-table <options> [bold]{-t} [underline]{TableName} [bold]{-d} [underline]{DataFile.json}'
     },     
-    {
+     {
       header: 'Options',
       optionList: options 
     }
