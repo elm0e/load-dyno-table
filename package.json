@@ -1,0 +1,26 @@
+{
+  "name": "load-dyno-table",
+  "version": "1.0.0",
+  "description": "Load an AWS DynamoDB table from a JSON data file",
+  "main": "load-dyno-table.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "AWS",
+    "DynamoDB",
+    "Load"
+  ],
+  "author": "elm0e",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.6.7",
+    "child_process": "^1.0.2",
+    "command-line-args": "^3.0.1",
+    "command-line-usage": "^3.0.3",
+    "fs": "0.0.1-security",
+    "jsonfile": "^2.4.0",
+    "os": "^0.1.1",
+    "progress": "^1.1.8"
+  }
+}
