@@ -54,9 +54,18 @@ function processCommandLine() {
   var table = commandLineArgs(options);
   if (table.help || !table.tableName || !table.dataFile) displayUsage(options);
   if (table.removeTable && !table.createTable) displayUsage(options);
+  verifyFile(table.dataFile);
+  if (table.createTable) verifyFile(table.createTable);
   if (table.debug) debug = true;
   if (debug) console.log(table);
   return table;
+}
+
+function verifyFile(fileName) {
+   if (!fs.existsSync(fileName)) {
+      console.log("ERROR: File not found:", fileName);
+      process.exit(3);
+   }
 }
 
 function showBar() {

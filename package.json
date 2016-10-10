@@ -2,9 +2,9 @@
   "name": "load-dyno-table",
   "version": "1.0.0",
   "description": "Load an AWS DynamoDB table from a JSON data file",
+  "repository": "https://github.com/elm0e/load-dyno-table.git",
   "main": "load-dyno-table.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "AWS",
