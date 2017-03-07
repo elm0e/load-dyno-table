@@ -1,3 +1,5 @@
+![](https://travis-ci.org/elm0e/load-dyno-table.svg?branch=master)
+
 #load-dyno-table
 Load an AWS DynamoDB table from a JSON data file using multiple threads.
 
